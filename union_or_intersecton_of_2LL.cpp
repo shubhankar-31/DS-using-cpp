@@ -29,7 +29,7 @@ using namespace std;
   // lsit2:  8->4->2->10
 
 
-  void intersection_of_LL(si &main_set,lli &list2)
+  void intersection_of_LL(usi &main_set,lli &list2)
   { cout<< "intersection of list 1 and list 2 is  ";
       lli result;
       for(auto i: list2)
@@ -44,7 +44,7 @@ using namespace std;
   }
 
 
-void union_of_LL(si &main_set, lli &list2)
+void union_of_LL(usi &main_set, lli &list2)
   {
       cout<< "intersection of list 1 and list 2 is  ";
 
@@ -63,7 +63,7 @@ int main()
   list<int>list2={8,4,2,10};
 
 
-  si main_set;
+  usi main_set;
      for(auto i: list1)
       main_set.insert(i);
 
