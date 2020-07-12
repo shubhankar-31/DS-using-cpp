@@ -30,15 +30,15 @@ using namespace std;
 
 
   void intersection_of_LL(si &main_set,lli &list2)
-  { cout<< "intersection of list 1 and list 2 is";
+  { cout<< "intersection of list 1 and list 2 is  ";
       lli result;
       for(auto i: list2)
      {
-        if( main_set.count(i))
+        if( main_set.count(i)!=0)
             result.pb(i);
      }
        for(auto i : result)
-      cout<< i <<" ";
+      cout<< i <<"   ";
 
       space;
   }
@@ -46,13 +46,13 @@ using namespace std;
 
 void union_of_LL(si &main_set, lli &list2)
   {
-      cout<< "intersection of list 1 and list 2 is";
+      cout<< "intersection of list 1 and list 2 is  ";
 
       for(auto i: list2)
       main_set.insert(i);
 
     for(auto i : main_set)
-    cout<< i <<" ";
+    cout<< i <<"   ";
 
 
 
