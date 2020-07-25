@@ -59,18 +59,14 @@ void Graph::add_Edge(int u, int v)
      cout<< source<<" ";
 
      for(auto x: adj[source])
-     {
-         if(!visited[x])
-            DFS_Until(x,visited);
+     {  if(!visited[x])
+        DFS_Until(x,visited);
      }
  }
  void Graph::DFS(int source)
 {
     vector<bool> visited(V,false);
-    visited[source]=true;
-
-    DFS_Until(source,visited);
-
+     DFS_Until(source,visited);
 
 }
 //the program is working as it should be
