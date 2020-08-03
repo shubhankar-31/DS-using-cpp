@@ -40,41 +40,35 @@ DisjointSet(int n)
     {  rank.resize(n);
         parent.resize(n);
         this->n = n;
-        makeSet();
+        for (int i = 0; i < n; i++)
+        {parent[i] = i;
+         rank[i]=0;}
     }
 
-    void makeSet()
-    {  for (int i = 0; i < n; i++)
-            parent[i] = i;
-    }
-
+//Path compression
+//modification in find()
 int find(int x)
-    {
-         if (parent[x] != x) {
-
+    {   if (parent[x] != x) {
             // if x is not the parent of itself
-             parent[x] = find(parent[x]);
-            // so we recursively call Find on its parent
-            // and move i's node directly under the
-            // representative of this set
+        int result = find(parent[x]);
+             parent[x]=result;
+             return result;
         }
+
+        else
         return parent[x];
     }
-
+//Union by rank
 void Union(int x, int y)
     {
         // Find current sets of x and y
         int xset = find(x);
         int yset = find(y);
 
-        // If they are already in same set
         if (xset == yset)
             return;
 
-        // Put smaller ranked item under
-        // bigger ranked item if ranks are
-        // different
-       if (rank[xset] < rank[yset]) {
+        if (rank[xset] < rank[yset]) {
             parent[xset] = yset;
         }
 
@@ -82,8 +76,6 @@ void Union(int x, int y)
             parent[yset] = xset;
         }
 
-        // If ranks are same, then increment
-        // rank.
         else {
             parent[yset] = xset;
             rank[xset] = rank[xset] + 1;
@@ -98,7 +90,6 @@ int main()
     obj.Union(0, 2);
     obj.Union(4, 2);
     obj.Union(3, 1);
-
 
     if (obj.find(4) == obj.find(0))
         cout << "Yes\n";
