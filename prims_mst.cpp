@@ -39,7 +39,7 @@ void addEdge(vpii adj[],int u,int v,int weight)
 
 void Prims_MST(vpii adj[],int V)
 {
-    priority_queue<pii,vpii,greater<pii>> pq;//ordering based on first element of the pair not by weight
+    priority_queue<pii,vpii,greater<pii>> pq;
 
     int source=0;
     vi key(V,INF);
@@ -70,8 +70,17 @@ void Prims_MST(vpii adj[],int V)
         }
 
     }
+
+cout<<" MST edges are ";space;
     for (int i = 1; i < V; ++i)
        cout<< parent[i]<<" ---"<<i<<endl;
+space;
+ int min_weight=0;
+       fo(i,key.size())
+            min_weight+=key[i];
+
+
+       cout<< " minimum weight is equal to -->> " <<min_weight;
 }
 int main()
 {
