@@ -39,18 +39,19 @@ void addEdge(vpii adj[],int u,int v,int weight)
 
 void Dijkstras(vpii adj[],int V,int source)
 {
-    priority_queue<pii,vpii,greater<pii>> pq;
+    set<pii> setds;
 
+     vi distance(V,INF);
 
-    vi distance(V,INF);
-
-    pq.push(mp(0,source));
+    setds.insert(mp(0,source));
     distance[source]=0;
 
-    while(!pq.empty())
-    {
-        int u=pq.top().second;
-        pq.pop();
+    while(!setds.empty())
+    { //copying the pair from the set that would be the first element
+        pii temp_pair = *(setds.begin());
+       //using the copied pair's second element
+        int u=temp_pair.second;
+        setds.erase(setds.begin());
 
 
         for(auto x: adj[u])
@@ -58,15 +59,23 @@ void Dijkstras(vpii adj[],int V,int source)
             int weight=x.second;
 
 
-             if(distance[v]> distance[u]+weight)
-             {distance[v]=distance[u]+weight;
-                  pq.push(mp(weight,v));
+             if(distance[v]> distance[u] + weight)
+             {//If distance of v is not INF then it must be in
+                    //our set, so removing it and inserting again
+                    //with updated less distance.
+                 if(distance[v]!=INF)
+                 {auto y=setds.find(mp(distance[v],v));
+                  setds.erase(*y);}
+
+               //updating the weight for the vertex v
+               distance[v]=distance[u]+weight;
+               setds.insert(mp(weight,v));
              }
         }
 
-    }
+          }
 
-cout<<"Vertex \t Distances from the source 0   "<<endl;
+cout<<"Vertex \t Distances from the source  "<< source <<endl;
     for (int i = 0; i < V; ++i)
        cout<< i<<"\t\t"<<distance[i]<<endl;
 space;
@@ -94,7 +103,13 @@ int V = 9;
     addEdge(adj, 6, 8, 6);
     addEdge(adj, 7, 8, 7);
 
-Dijkstras(adj,V,0);
 
+    Dijkstras(adj,V,0);
+    //shortest path from all vertices to the other vertices in the graph
+    #if 0
+    fo(i,V)
+   {Dijkstras(adj,V,i);
+   space;}
+#endif
     return 0;
 }
