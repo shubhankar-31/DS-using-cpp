@@ -59,7 +59,7 @@ distance[source]=0;
     // guarantees shortest distances if graph does not contain
     // negative weight cycle.  If we get a shorter path, then there
     // is a cycle.
-      for(int i=1;i<V;i++)
+      for(int i=0;i<V;i++)
       { for(auto x: adj[i])
           {   int v=x.first;
               int weight=x.second;
